@@ -14,7 +14,7 @@ import {
 import { ButtonSubmit, Form, FormWrapper, ToasterWrapper } from '@styles';
 import { toast } from '@utils/ToastService';
 
-export const Settings = () => {
+export const ToastSettings = () => {
   const [options, setOptions] = useState({
     toastType: 'success',
     toastTitle: '',

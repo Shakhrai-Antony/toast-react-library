@@ -4,8 +4,8 @@ import { ThemeProvider } from 'styled-components';
 import { baseTheme } from '../theme';
 import ErrorBoundary from '@components/ErrorBoundary';
 import { ToastsPortal } from '@components/ToastPortal';
-import { Settings } from '@components/ToastSettings';
 import { toast } from '@utils/ToastService';
+import { ToastSettings } from '@components/ToastSettings';
 
 export const Toaster = () => {
   const toastRef = useRef();
@@ -17,7 +17,7 @@ export const Toaster = () => {
   return (
     <ThemeProvider theme={baseTheme}>
       <ErrorBoundary>
-        <Settings />
+        <ToastSettings />
         <ToastsPortal ref={toastRef} />
       </ErrorBoundary>
     </ThemeProvider>
