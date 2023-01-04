@@ -4,7 +4,7 @@ import { baseTheme } from '/src/theme';
 
 export const ToasterWrapper = styled.div`
   position: absolute;
-  top: 100px;
+  top: 140px;
   display: flex;
   justify-content: center;
   align-items: center;
