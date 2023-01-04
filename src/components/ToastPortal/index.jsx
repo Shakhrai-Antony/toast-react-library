@@ -1,25 +1,22 @@
+import Toasts from '@components/Toasts';
+import { uuid } from '@constants';
+import { toast } from '@utils/ToastService';
 import PropTypes from 'prop-types';
 import React, {
   forwardRef,
   useEffect,
   useImperativeHandle,
-  useReducer,
   useState,
 } from 'react';
 import ReactDOM from 'react-dom';
 
-import Toasts from '../Toasts';
-import { uuid } from '@constants';
-import { toast } from '@utils/ToastService';
-
 const portalId = `toast-portal-${uuid()}`;
-// eslint-disable-next-line no-empty-pattern
 export const ToastsPortal = forwardRef(({}, ref) => {
   const [loaded, setLoaded] = useState(false);
-  const [, forceUpdate] = useReducer(() => ({}), {});
+  const [, update] = useState(false);
 
   useImperativeHandle(ref, () => ({
-    refresh: forceUpdate,
+    refresh: () => update((prev) => !prev),
   }));
 
   const toasts = toast.getAllToasts();
@@ -36,7 +33,7 @@ export const ToastsPortal = forwardRef(({}, ref) => {
 
   return loaded ? (
     ReactDOM.createPortal(
-      <div>
+      <div id={'toastPortal'}>
         {toasts.map((props) => (
           <Toasts key={props.id} {...props} />
         ))}

@@ -1,3 +1,4 @@
+import { selectOptions } from '@constants';
 import PropTypes from 'prop-types';
 import React from 'react';
 
@@ -9,23 +10,30 @@ import {
   ToastGapWrapper,
   ToastPositionWrapper,
   ToastSelect,
-} from '@styles';
+} from './styles';
 
-export const ToastType = ({ handleChange, value }) => {
+export const ToastType = React.memo(({ handleChange, value }) => {
   return (
-    <ToastSelect value={value} name="toastType" onChange={handleChange}>
-      <option value="success">Success</option>
-      <option value="warning">Warning</option>
-      <option value="error">Error</option>
+    <ToastSelect
+      value={value}
+      name="toastType"
+      onChange={handleChange}
+      id={'toastType'}
+    >
+      {selectOptions.map(({ value, description, id }) => (
+        <option key={id} value={value}>
+          {description}
+        </option>
+      ))}
     </ToastSelect>
   );
-};
+});
 ToastType.propTypes = {
   handleChange: PropTypes.func,
   value: PropTypes.string,
 };
 
-export const ToastTitle = ({ handleChange, value }) => {
+export const ToastTitle = React.memo(({ handleChange, value }) => {
   return (
     <TitleWrapper>
       <input
@@ -33,17 +41,18 @@ export const ToastTitle = ({ handleChange, value }) => {
         name="toastTitle"
         value={value}
         placeholder="Toast Title"
+        id={'toastTitle'}
         onChange={handleChange}
       />
     </TitleWrapper>
   );
-};
+});
 ToastTitle.propTypes = {
   handleChange: PropTypes.func,
   value: PropTypes.string,
 };
 
-export const ToastDescription = ({ handleChange, value }) => {
+export const ToastDescription = React.memo(({ handleChange, value }) => {
   return (
     <DescriptionWrapper>
       <input
@@ -51,17 +60,18 @@ export const ToastDescription = ({ handleChange, value }) => {
         type="text"
         value={value}
         placeholder="Toast Description"
+        id={'toastDescription'}
         onChange={handleChange}
       />
     </DescriptionWrapper>
   );
-};
+});
 ToastDescription.propTypes = {
   handleChange: PropTypes.func,
   value: PropTypes.string,
 };
 
-export const ToastDuration = ({ handleChange }) => {
+export const ToastDuration = React.memo(({ handleChange }) => {
   return (
     <ToastDurationWrapper>
       <input
@@ -91,13 +101,13 @@ export const ToastDuration = ({ handleChange }) => {
       <label htmlFor="15000">15 seconds</label>
     </ToastDurationWrapper>
   );
-};
+});
 
 ToastDuration.propTypes = {
   handleChange: PropTypes.func,
 };
 
-export const ToastPosition = ({ handleChange }) => {
+export const ToastPosition = React.memo(({ handleChange }) => {
   return (
     <ToastPositionWrapper>
       <input
@@ -119,13 +129,13 @@ export const ToastPosition = ({ handleChange }) => {
       <label htmlFor="right">right</label>
     </ToastPositionWrapper>
   );
-};
+});
 
 ToastPosition.propTypes = {
   handleChange: PropTypes.func,
 };
 
-export const ToastGap = ({ handleChange }) => {
+export const ToastGap = React.memo(({ handleChange }) => {
   return (
     <ToastGapWrapper>
       <input
@@ -147,13 +157,13 @@ export const ToastGap = ({ handleChange }) => {
       <label htmlFor="40">gap: 40px</label>
     </ToastGapWrapper>
   );
-};
+});
 
 ToastGap.propTypes = {
   handleChange: PropTypes.func,
 };
 
-export const ToastAnimation = ({ handleChange }) => {
+export const ToastAnimation = React.memo(({ handleChange }) => {
   return (
     <ToastAnimationWrapper>
       <input
@@ -175,7 +185,7 @@ export const ToastAnimation = ({ handleChange }) => {
       <label htmlFor="ySlide">Y slide</label>
     </ToastAnimationWrapper>
   );
-};
+});
 ToastAnimation.propTypes = {
   handleChange: PropTypes.func,
 };

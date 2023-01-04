@@ -1,7 +1,13 @@
 import PropTypes from 'prop-types';
 import React, { useEffect, useState } from 'react';
 
-import { ToastWrapper } from '@styles';
+import {
+  Toast,
+  ToastDescription,
+  ToastTitle,
+  ToastType,
+  ToastWrapper,
+} from './styles';
 
 const Toasts = (props) => {
   const {
@@ -18,29 +24,23 @@ const Toasts = (props) => {
 
   const [animationDirection, setAnimationDirection] = useState(true);
 
-  const handleClose = (id) => {
-    setTimeout(() => {
-      setAnimationDirection(false);
-    }, duration - 800);
-    setTimeout(() => {
-      removeToast(id);
-      setAnimationDirection(true);
-    }, duration);
-  };
-
   useEffect(() => {
-    handleClose(id);
+    const autoClose = (id) => {
+      setTimeout(() => {
+        setAnimationDirection(false);
+      }, duration - 800);
+      setTimeout(() => {
+        removeToast(id);
+        setAnimationDirection(true);
+      }, duration);
+    };
+    autoClose(id);
+    return () => {
+      clearTimeout(duration);
+    };
   }, []);
 
-  const handleDragDelete = (id) => () => {
-    setAnimationDirection(false);
-    setTimeout(() => {
-      removeToast(id);
-      setAnimationDirection(true);
-    }, 800);
-  };
-
-  const handleOnClickDelete = (id) => () => {
+  const handleDelete = (id) => () => {
     setAnimationDirection(false);
     setTimeout(() => {
       removeToast(id);
@@ -50,20 +50,21 @@ const Toasts = (props) => {
 
   return (
     <ToastWrapper
+      id={'toastWrapper'}
       draggable={true}
-      onDragEnd={handleDragDelete(id)}
+      onDragEnd={handleDelete(id)}
       position={position}
       gap={gap}
       type={toastType}
       animation={animationStatus}
       animationDirection={animationDirection}
     >
-      <div>
-        <p>{toastType}</p>
-        <span onClick={handleOnClickDelete(id)}>X</span>
-      </div>
-      <p>{toastTitle}</p>
-      <p>{toastDescription}</p>
+      <Toast>
+        <ToastType>{toastType}</ToastType>
+        <span onClick={handleDelete(id)}>X</span>
+      </Toast>
+      <ToastTitle>{toastTitle}</ToastTitle>
+      <ToastDescription>{toastDescription}</ToastDescription>
     </ToastWrapper>
   );
 };
@@ -80,4 +81,4 @@ Toasts.propTypes = {
   animationStatus: PropTypes.string,
 };
 
-export default Toasts;
+export default React.memo(Toasts);

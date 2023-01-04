@@ -17,5 +17,9 @@ export const baseTheme = {
   sizes: {
     width: 42 | 70 | 350 | 400 | 700,
     height: 42 | 120,
+    gap: 20 || 40,
+    borderRadius: 6 || 10 || 15,
+    fontSize: 15 || 16 || 20 || 25,
   },
+  spaces: [0, 5, 10, 15, 20, 25, 30, 35, 40, 50, 80],
 };

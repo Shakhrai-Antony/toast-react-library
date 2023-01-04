@@ -1,11 +1,12 @@
+import ErrorBoundary from '@components/ErrorBoundary';
+import { ToastsPortal } from '@components/ToastPortal';
+import { ToastSettings } from '@components/ToastSettings';
+import { toast } from '@utils/ToastService';
 import React, { useLayoutEffect, useRef } from 'react';
 import { ThemeProvider } from 'styled-components';
 
+import GlobalStyle from '../globalStyle';
 import { baseTheme } from '../theme';
-import ErrorBoundary from '@components/ErrorBoundary';
-import { ToastsPortal } from '@components/ToastPortal';
-import { toast } from '@utils/ToastService';
-import { ToastSettings } from '@components/ToastSettings';
 
 export const Toaster = () => {
   const toastRef = useRef();
@@ -20,6 +21,7 @@ export const Toaster = () => {
         <ToastSettings />
         <ToastsPortal ref={toastRef} />
       </ErrorBoundary>
+      <GlobalStyle />
     </ThemeProvider>
   );
 };

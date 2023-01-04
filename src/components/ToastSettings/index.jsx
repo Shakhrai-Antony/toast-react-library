@@ -1,6 +1,3 @@
-import React from 'react';
-import { useState } from 'react';
-
 import toaster from '@assets/toaster.svg';
 import {
   ToastAnimation,
@@ -10,9 +7,12 @@ import {
   ToastPosition,
   ToastTitle,
   ToastType,
-} from '../FormData';
-import { ButtonSubmit, Form, FormWrapper, ToasterWrapper } from '@styles';
+} from '@components/FormData';
 import { toast } from '@utils/ToastService';
+import React from 'react';
+import { useState } from 'react';
+
+import { ButtonSubmit, Form, FormWrapper, ToasterWrapper } from './styles';
 
 export const ToastSettings = () => {
   const [options, setOptions] = useState({
@@ -59,7 +59,7 @@ export const ToastSettings = () => {
           <ToastPosition handleChange={handleChange} />
           <ToastGap handleChange={handleChange} />
           <ToastAnimation handleChange={handleChange} />
-          <ButtonSubmit>Add Toast</ButtonSubmit>
+          <ButtonSubmit id={'buttonSubmit'}>Add Toast</ButtonSubmit>
         </Form>
       </FormWrapper>
     </>

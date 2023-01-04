@@ -16,7 +16,10 @@
     "build-storybook": "build-storybook -s public",
     "build": "rollup -c",
     "prepublish:public": "npm run build",
-    "publish:public": "npm publish --access public"
+    "publish:public": "npm publish --access public",
+    "lint": "eslint --fix --ext .js,.jsx .",
+    "test:cypress": "start-server-and-test start http://localhost:6006 cypress",
+    "cypress:": "cypress run"
   },
   "eslintConfig": {
     "extends": [
@@ -65,10 +68,12 @@
     "@storybook/react": "^6.5.10",
     "@storybook/testing-library": "^0.0.13",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "cypress": "^12.3.0",
     "eslint-config-prettier": "^8.5.0",
     "eslint-config-react": "^1.1.7",
     "eslint-plugin-cypress": "^2.12.1",
     "eslint-plugin-prettier": "^4.2.1",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
     "eslint-plugin-storybook": "^0.6.7",
     "prettier": "^2.7.1",
     "prop-types": "^15.8.1",
